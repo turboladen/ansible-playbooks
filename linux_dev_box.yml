@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  vars:
+    user: sloveless
+    home_directory: /home/${user} 
+  tasks:
+  - name: set up bash
+    action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_profile dest=${home_directory}/.bash_profile mode=0644
+    action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_aliases dest=${home_directory}/.bash_aliases mode=0644
+  - name: set up ruby
+    action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
+
