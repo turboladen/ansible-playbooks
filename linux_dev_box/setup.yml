@@ -9,4 +9,9 @@
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_aliases dest=${home_directory}/.bash_aliases mode=0644
   - name: set up ruby
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
+  - name: set up vim
+    action: apt pkg=vim state=latest
+    action: git repo=https://github.com/carlhuda/janus.git dest=/home/${user}/.vim
+    action: shell chdir=/home/${user}/.vim/ /usr/bin/env rake
+    #action: shell ./home/${user}/.bashrc && curl -Lo- https://bit.ly/janus-bootstrap | bash
 
