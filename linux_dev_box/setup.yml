@@ -8,7 +8,7 @@
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_profile dest=${home_directory}/.bash_profile mode=0644
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_aliases dest=${home_directory}/.bash_aliases mode=0644
   - name: set up rvm
-    action: apt pkg=$item state=installed
+    action: apt pkg=$item state=present
     with_items:
       - build-essential
       - openssl
@@ -31,6 +31,7 @@
       - libtool
       - bison
       - subversion
+    action: shell curl -L https://get.rvm.io | bash -s stable creates=${home_directory}/.rvm/
   - name: set up ruby
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.irbrc dest=${home_directory}/.irbrc mode=0644
