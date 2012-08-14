@@ -11,6 +11,10 @@
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
     action: apt pkg=rake state=latest
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.irbrc dest=${home_directory}/.irbrc mode=0644
+  - name: install monaco
+    action: command mkdir /usr/share/fonts/truetype/custom
+    action: get_url url=http://www.gringod.com/wp-upload/software/Fonts/Monaco_Linux.ttf dest=/usr/share/fonts/truetype/custom/
+    action: command fc-cache -f -v
   - name: set up vim
     action: apt pkg=vim-gnome state=latest
     action: git repo=https://github.com/carlhuda/janus.git dest=/home/${user}/.vim
