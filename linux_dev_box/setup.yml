@@ -10,9 +10,10 @@
   - name: set up ruby
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
     action: apt pkg=rake state=latest
+    action: get_url url=https://raw.github.com/turboladen/config_files/master/.irbrc dest=${home_directory}/.irbrc mode=0644
   - name: set up vim
     action: apt pkg=vim-gnome state=latest
     action: git repo=https://github.com/carlhuda/janus.git dest=/home/${user}/.vim
     action: shell chdir=/home/${user}/.vim/ rake
-    action: get_url url=https://raw.github.com/turboladen/config_files/master/.gvimrc dest=${home_directory}/.gvimrc.after mode=0644
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.vimrc dest=${home_directory}/.vimrc.after mode=0644
+    action: get_url url=https://raw.github.com/turboladen/config_files/master/.gvimrc dest=${home_directory}/.gvimrc.after mode=0644
