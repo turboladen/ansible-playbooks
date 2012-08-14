@@ -7,17 +7,20 @@
   - name: set up bash
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_profile dest=${home_directory}/.bash_profile mode=0644
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.bash_aliases dest=${home_directory}/.bash_aliases mode=0644
+  - name: set up rvm
+    action: apt pkg=git state=installed
+    action: apt pkg=curl state=installed
   - name: set up ruby
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gemrc dest=${home_directory}/.gemrc mode=0644
-    action: apt pkg=rake state=latest
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.irbrc dest=${home_directory}/.irbrc mode=0644
   - name: install monaco
     action: command mkdir /usr/share/fonts/truetype/custom
     action: get_url url=http://www.gringod.com/wp-upload/software/Fonts/Monaco_Linux.ttf dest=/usr/share/fonts/truetype/custom/
     action: command fc-cache -f -v
   - name: set up vim
+    action: apt pkg=rake state=latest
     action: apt pkg=vim-gnome state=latest
-    action: git repo=https://github.com/carlhuda/janus.git dest=/home/${user}/.vim
-    action: shell chdir=/home/${user}/.vim/ rake
+    action: git repo=https://github.com/carlhuda/janus.git dest=/${home_directory}/.vim
+    action: shell chdir=/${home_directory}/.vim/ rake
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.vimrc dest=${home_directory}/.vimrc.after mode=0644
     action: get_url url=https://raw.github.com/turboladen/config_files/master/.gvimrc dest=${home_directory}/.gvimrc.after mode=0644
